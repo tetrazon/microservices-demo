@@ -1,11 +1,12 @@
 package microservices.book.gamification.game;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -16,7 +17,7 @@ public class GameEventHandler {
 
     @RabbitListener(queues = "${amqp.queue.gamification}")
     void handleMultiplicationSolved(final ChallengeSolvedEvent event) {
-        log.info("Challenge Solved Enent received: {}", event.getAttemptId());
+        log.info("Challenge Solved Event received: {}", event.getAttemptId());
         try {
             gameService.newAttemptForUser(event);
         } catch (final Exception e) {
@@ -25,4 +26,5 @@ public class GameEventHandler {
             throw new AmqpRejectAndDontRequeueException(e);
         }
     }
+
 }
