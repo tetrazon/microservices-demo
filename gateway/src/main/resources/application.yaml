@@ -25,6 +25,6 @@ spring:
               - "POST"
               - "OPTIONS"
 # ... route config
-logging:
-  level:
-    org.springframework.cloud.gateway.handler.predicate: trace
+#logging:
+#  level:
+#    org.springframework.cloud.gateway.handler.predicate: trace
