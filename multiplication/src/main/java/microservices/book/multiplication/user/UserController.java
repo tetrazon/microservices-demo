@@ -1,7 +1,6 @@
 package microservices.book.multiplication.user;
 import java.util.List;
 
-import microservices.book.multiplication.challenge.UserRepository;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +12,7 @@ public class UserController {
     private final UserRepository userRepository;
     @GetMapping("/{idList}")
     public List<User> getUsersByIdList(@PathVariable final List<Long> idList) {
+        log.info("Resolving aliases for users {}", idList);
         return userRepository.findAllByIdIn(idList);
     }
 }

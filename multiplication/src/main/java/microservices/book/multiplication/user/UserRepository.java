@@ -1,4 +1,4 @@
-package microservices.book.multiplication.challenge;
+package microservices.book.multiplication.user;
 
 import microservices.book.multiplication.user.User;
 import org.springframework.data.repository.CrudRepository;
