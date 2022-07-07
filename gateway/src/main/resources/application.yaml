@@ -43,6 +43,7 @@ spring:
               - "OPTIONS"
 
 # ... route config
-#logging:
-#  level:
+logging:
+  level:
+    org.springframework.amqp.rabbit.connection.CachingConnectionFactory: WARN
 #    org.springframework.cloud.gateway.handler.predicate: trace
