@@ -42,8 +42,8 @@ spring:
               - "POST"
               - "OPTIONS"
 
+
+#logging:
+#  level:
 # ... route config
-logging:
-  level:
-    org.springframework.amqp.rabbit.connection.CachingConnectionFactory: WARN
 #    org.springframework.cloud.gateway.handler.predicate: trace
