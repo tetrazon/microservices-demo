@@ -1,5 +1,9 @@
 version: "3"
 services:
+    frontend:
+    image: challenges-frontend:1.0
+    ports:
+      - '3000:80'
   consul-importer:
     image: consul-importer:1.0
     depends_on:
