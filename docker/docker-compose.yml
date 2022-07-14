@@ -1,11 +1,11 @@
 version: "3"
 services:
   frontend:
-    image: challenges-frontend:1.0
+    image: ivansynergysoft/challenges-frontend:1.0
     ports:
       - '3000:80'  
   multiplication:
-    image: multiplication:1.0.0
+    image: ivansynergysoft/multiplication:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
@@ -15,7 +15,7 @@ services:
     networks:
       - microservices
   gamification:
-    image: gamification:1.0.0
+    image: ivansynergysoft/gamification:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
@@ -25,7 +25,7 @@ services:
     networks:
       - microservices
   gateway:
-    image: gateway:1.0.0
+    image: ivansynergysoft/gateway:1.0.0
     ports:
       - '8000:8000'
     environment:
@@ -37,7 +37,7 @@ services:
     networks:
       - microservices
   logs:
-    image: logs:1.0.0
+    image: ivansynergysoft/logs:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
@@ -47,7 +47,7 @@ services:
     networks:
       - microservices
   consul-importer:
-    image: consul-importer:1.0
+    image: ivansynergysoft/consul-importer:1.0
     depends_on:
       - consul-dev
     networks:
