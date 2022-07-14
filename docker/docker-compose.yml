@@ -1,9 +1,51 @@
 version: "3"
 services:
-    frontend:
+  frontend:
     image: challenges-frontend:1.0
     ports:
-      - '3000:80'
+      - '3000:80'  
+  multiplication:
+    image: multiplication:1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - rabbitmq-dev
+      - consul-importer
+    networks:
+      - microservices
+  gamification:
+    image: gamification:1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - rabbitmq-dev
+      - consul-importer
+    networks:
+      - microservices
+  gateway:
+    image: gateway:1.0.0
+    ports:
+      - '8000:8000'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - rabbitmq-dev
+      - consul-importer
+    networks:
+      - microservices
+  logs:
+    image: logs:1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - rabbitmq-dev
+      - consul-importer
+    networks:
+      - microservices
   consul-importer:
     image: consul-importer:1.0
     depends_on:
